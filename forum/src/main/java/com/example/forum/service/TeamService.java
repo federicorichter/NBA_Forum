@@ -24,7 +24,8 @@ public class TeamService {
                         @Value("${balldontlie.api.key}") String apiKey) {
         this.webClient = webClientBuilder.baseUrl(API_URL_TEAMS).defaultHeader("Authorization", apiKey).build();
     }
-
+    
+    @SuppressWarnings("unchecked")
     public Mono<List<Map<String, Object>>> getAllTeams() {
         return webClient.get()
                 .retrieve()

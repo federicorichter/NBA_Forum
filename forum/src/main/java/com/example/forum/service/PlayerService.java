@@ -39,9 +39,10 @@ public class PlayerService {
                         .build())
                 .retrieve()
                 .bodyToMono(Map.class)
-                .map(response -> (List<Map<String, Object>>) response.get("data"));
+                .map(response -> response.get("data"));
     }
 
+    @SuppressWarnings("unchecked")
     public Mono<List<Map<String, Object>>> getAllPlayers() {
         return webClient.get()
                 .retrieve()

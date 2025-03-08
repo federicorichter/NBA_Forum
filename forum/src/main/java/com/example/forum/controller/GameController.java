@@ -3,11 +3,14 @@ package com.example.forum.controller;
 import com.example.forum.model.Game;
 import com.example.forum.service.GameService;
 
+import reactor.core.publisher.Mono;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -29,6 +32,11 @@ public class GameController {
     @GetMapping("/{id}")
     public Optional<Game> getGameById(@PathVariable Long id) {
         return gameService.getGameById(id);
+    }
+
+    @GetMapping("/today")
+    public Mono<List<Map<String, Object>>> getGamesForToday() {
+        return gameService.getGamesForToday();
     }
 
     // 🔹 Guardar un nuevo partido
