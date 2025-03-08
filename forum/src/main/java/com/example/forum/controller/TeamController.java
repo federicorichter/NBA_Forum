@@ -1,12 +1,15 @@
 package com.example.forum.controller;
 
 import com.example.forum.service.TeamService;
+
+import reactor.core.publisher.Mono;
+
 import com.example.forum.model.Team;
 
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/teams")
@@ -18,12 +21,12 @@ public class TeamController {
     }
 
     @GetMapping
-    public List<Team> getAllTeams() {
-        return teamService.getAllTeams();  // FIX: This method was originally named incorrectly in TeamService
+    public Mono<List<Map<String, Object>>> getAllTeams() {
+        return teamService.getAllTeams();
     }
 
     @GetMapping("/{id}")
-    public Optional<Team> getTeamById(@PathVariable Long id) {
+    public Mono<String> getTeamById(@PathVariable Long id) {
         return teamService.getTeamById(id);
     }
 
