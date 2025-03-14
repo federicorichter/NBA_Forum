@@ -1,0 +1,19 @@
+.team-list {
+    width: 100px; // Adjust the sidebar width
+    max-width: 100%;
+  }
+  
+  mat-list-item {
+    padding: 5px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  

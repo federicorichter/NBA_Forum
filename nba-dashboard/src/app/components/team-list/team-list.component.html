@@ -1,0 +1,6 @@
+<h2>NBA Teams</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let team of teams">
+        <a [routerLink]="['/team', team.id]">{{ team.name }}</a>
+      </mat-list-item>
+    </mat-list>
