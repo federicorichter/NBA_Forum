@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { NbaService } from '../../services/nba.service';
 //import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-team-list',
   standalone: true,
-  imports: [CommonModule, MatListModule, RouterModule],
+  imports: [CommonModule, MatListModule, RouterModule, RouterLink],
   templateUrl: './team-list.component.html',
   styleUrls: ['./team-list.component.scss']
 })

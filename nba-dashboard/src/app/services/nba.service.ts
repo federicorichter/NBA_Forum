@@ -20,6 +20,7 @@ export class NbaService {
 
   getTeamById(id: string | null): Observable<any> {
     console.log("ID:", id);
+    console.log("Route "+this.baseUrl+"/teams/"+id);
     return this.http.get<any>(`${this.baseUrl}/teams/${id}`);
   }
 }

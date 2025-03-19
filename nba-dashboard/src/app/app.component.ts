@@ -4,7 +4,7 @@ import { TodayGamesComponent } from './components/today-games/today-games.compon
 import { TeamListComponent } from './components/team-list/team-list.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { HttpClientModule } from '@angular/common/http';  //
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,18 +14,18 @@ import { HttpClientModule } from '@angular/common/http';  //
     TodayGamesComponent,
     TeamListComponent,
     MatSidenavModule,
-    HttpClientModule,
-    MatListModule
+    MatListModule,
+    RouterOutlet
   ],
   template: `
     <mat-sidenav-container>
-      <mat-sidenav mode="side" opened>
-        <app-team-list></app-team-list>
-      </mat-sidenav>
-      <mat-sidenav-content>
-        <app-today-games></app-today-games>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+      <app-team-list></app-team-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet> <!-- This now controls all views -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
   `,
   styleUrls: ['./app.component.scss']
 })

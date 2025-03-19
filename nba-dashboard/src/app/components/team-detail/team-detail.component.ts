@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NbaService } from '../../services/nba.service';
@@ -8,7 +8,7 @@ import { NbaService } from '../../services/nba.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div *ngIf="team">
+    <div class="team-detail" *ngIf="team">
       <h2>{{ team.full_name }}</h2>
       <p><strong>Conference:</strong> {{ team.conference }}</p>
       <p><strong>Division:</strong> {{ team.division }}</p>
@@ -18,18 +18,19 @@ import { NbaService } from '../../services/nba.service';
   styleUrls: ['./team-detail.component.scss']
 })
 export class TeamDetailComponent implements OnInit {
-  team: any;
-
-  constructor(private route: ActivatedRoute, private nbaService: NbaService) {}
+  team: any = null;
+  route = inject(ActivatedRoute);
+  nbaService = inject(NbaService);
 
   ngOnInit(): void {
-    const teamId = this.route.snapshot.paramMap.get('id');
-  
-    this.nbaService.getTeamById(teamId).subscribe(data => {
-      this.team = data;
+    this.route.params.subscribe(params => {
+      const teamId = params['id'];  // Get team ID from URL
+      if (teamId) {
+        this.nbaService.getTeamById(teamId).subscribe(response => {
+          console.log("API Response:", response);
+          this.team = response.data;  // ✅ Ensure correct data path
+        });
+      }
     });
-
-    console.log("Team ID", this.team);
-
   }
 }

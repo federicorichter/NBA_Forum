@@ -27,6 +27,7 @@ public class TeamController {
 
     @GetMapping("/{id}")
     public Mono<String> getTeamById(@PathVariable Long id) {
+        System.out.println("The ID is: " + id);
         return teamService.getTeamById(id);
     }
 
